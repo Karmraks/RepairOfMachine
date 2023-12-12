@@ -1,0 +1,39 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "News";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">News</h1>
+    </div>
+
+    <div class="my-4">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Author</th>
+                <th scope="col">CreateDate</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    @* <td>@item.Date.ToString("yyyy.MM.dd HH:mm")</td> *@
+                    <td>@item.UserName</td>
+                    <td>@item.CreatedDate.ToString("yyyy.MM.dd HH:mm")</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

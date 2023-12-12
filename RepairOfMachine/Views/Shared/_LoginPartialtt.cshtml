@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<li class="dropdown notification-list">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+           aria-expanded="false">
+            <span class="account-user-avatar">
+                <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+            </span>
+            <span>
+                <span class="account-user-name">@User.Identity?.Name</span>
+            </span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+
+            <!-- item-->
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                <i class="mdi mdi-account-circle me-1"></i>
+                <span>My Account</span>
+            </a>
+    <li><a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">My Account</a></li>
+
+            <!-- item-->
+            @* <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <i class="mdi mdi-lifebuoy me-1"></i>
+                <span>Support</span>
+            </a> *@
+
+            <!-- item-->
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="dropdown-item notify-item">Logout</button>
+            </form>
+
+        </div>
+
+    }
+    else
+    {
+    <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+    <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+    }
+</li>

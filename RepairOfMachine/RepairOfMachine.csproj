@@ -27,4 +27,17 @@
     <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Home\News.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Admin\News.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Home\News.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Admin\News.cshtml" />
+  </ItemGroup>
+
 </Project>

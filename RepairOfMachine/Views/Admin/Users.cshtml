@@ -2,6 +2,43 @@
     ViewData["Title"] = "Users";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Users</h1>
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Users</h1>
+    </div>
+
+    <div class="my-4">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Email</th>
+                <th scope="col">PhoneNumber</th>
+                <th scope="col">LockoutEnd</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.UserName</td>
+                    @* <td>@item.Created.ToString("yyyy.MM.dd HH:mm")</td> *@
+                    <td>@item.Email</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.LockoutEnd?.ToString("yyyy.MM.dd HH:mm")</td>
+                    <form method="get" asp-controller="Admin" asp-action="UpdateNews" asp-route-id="@item.Id">
+                        <td><button type="submit" class="btn btn-primary btn-sm">Block</button></td>
+                    </form>
+                    <form method="get" asp-controller="Admin" asp-action="DeleteNewsCheck" asp-route-id="@item.Id">
+                        <td><button type="submit" class="btn btn-danger btn-sm">Unblock</button></td>
+                    </form>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
 </div>

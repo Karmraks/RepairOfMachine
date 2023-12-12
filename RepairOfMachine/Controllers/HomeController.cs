@@ -1,18 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using RepairOfMachine.Models;
 using System.Diagnostics;
+using RepairOfMachine.Abstractions.Interfaces;
+using RepairOfMachine.Repositories;
 
 namespace RepairOfMachine.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(ILogger<HomeController> logger, INewsRepository newsRepository)
+        : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return View();
@@ -21,6 +17,12 @@ namespace RepairOfMachine.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public async Task<IActionResult> News()
+        {
+            var users = await newsRepository.GetAllAsync();
+            return View(users);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
